@@ -1,0 +1,36 @@
+{
+    "dialogues": [
+        {
+            "text": "हा हा हा... मैं तुम्हारी आत्मा को खा जाऊंगा...",
+            "audio_prompt": "horror_laugh_1.wav"
+        },
+        {
+            "text": "तुम्हारे पीछे कौन है? देखो...",
+            "audio_prompt": "ghost_whisper.wav"
+        },
+        {
+            "text": "इस घर में हर रात कोई रोता है...",
+            "audio_prompt": "haunted_cry.wav"
+        },
+        {
+            "text": "मैं तुम्हारे सपनों में आऊंगा...",
+            "audio_prompt": "evil_laugh.wav"
+        },
+        {
+            "text": "यहाँ से जाओ... यह जगह शापित है...",
+            "audio_prompt": "ghost_warning.wav"
+        },
+        {
+            "text": "तुम्हारी आत्मा मेरी है...",
+            "audio_prompt": "demonic_voice.wav"
+        },
+        {
+            "text": "देखो... वो दीवार से बाहर आ रहा है...",
+            "audio_prompt": "horror_sound.wav"
+        },
+        {
+            "text": "मैं तुम्हारे अंदर हूं...",
+            "audio_prompt": "possessed_voice.wav"
+        }
+    ]
+} 

@@ -143,6 +143,7 @@ class StreeFineTuner:
         
         best_loss = float('inf')
         
+        
         for epoch in range(num_epochs):
             logging.info(f"Starting epoch {epoch+1}/{num_epochs}")
             total_loss = 0

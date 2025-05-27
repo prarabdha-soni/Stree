@@ -46,6 +46,7 @@ checkpoints/
 output_models/
 training_data/
 stree-1.1a-model/
+voice-agent-model/
 *.wav
 *.mp3
 

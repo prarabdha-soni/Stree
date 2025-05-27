@@ -16,12 +16,12 @@ logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler('stree_fine_tuning.log'),
+        logging.FileHandler('voice_agent_fine_tuning.log'),
         logging.StreamHandler()
     ]
 )
 
-class StreeDataset(Dataset):
+class VoiceAgentDataset(Dataset):
     def __init__(self, data):
         self.data = data
     
@@ -31,9 +31,9 @@ class StreeDataset(Dataset):
     def __getitem__(self, idx):
         return self.data[idx]
 
-class StreeFineTuner:
+class VoiceAgentFineTuner:
     def __init__(self, base_model_path="nari-labs/Dia-1.6B", device="cuda"):
-        logging.info(f"Initializing Stree-1.1A fine-tuner with device: {device}")
+        logging.info(f"Initializing Voice Agent fine-tuner with device: {device}")
         self.device = torch.device(device)
         try:
             self.model = Dia.from_pretrained(base_model_path, compute_dtype="float16", device=self.device)
@@ -69,10 +69,7 @@ class StreeFineTuner:
 
     def prepare_dataset(self, data_dir):
         """
-        Prepare dataset from multiple sources:
-        - Emotional speech data
-        - General speech data
-        - Domain-specific data
+        Prepare dataset from multiple sources.
         """
         logging.info(f"Loading data from {data_dir}")
         processed_data = []
@@ -117,14 +114,14 @@ class StreeFineTuner:
         logging.info(f"Starting fine-tuning for {num_epochs} epochs")
         
         # Initialize wandb for experiment tracking
-        wandb.init(project="stree-1.1a", name="fine-tuning")
+        wandb.init(project="voice-agent", name="fine-tuning")
         
         # Create output directory
         output_path = Path(output_dir)
         output_path.mkdir(parents=True, exist_ok=True)
         
         # Create dataset and dataloader
-        train_dataset = StreeDataset(dataset)
+        train_dataset = VoiceAgentDataset(dataset)
         train_dataloader = DataLoader(
             train_dataset,
             batch_size=batch_size,
@@ -206,8 +203,8 @@ class StreeFineTuner:
 def main():
     try:
         # Initialize fine-tuner
-        logging.info("Initializing Stree-1.1A fine-tuner")
-        fine_tuner = StreeFineTuner()
+        logging.info("Initializing Voice Agent fine-tuner")
+        fine_tuner = VoiceAgentFineTuner()
         
         # Prepare dataset
         dataset = fine_tuner.prepare_dataset(
@@ -221,7 +218,7 @@ def main():
         # Fine-tune model
         fine_tuner.fine_tune(
             dataset=dataset,
-            output_dir="stree-1.1a-model",
+            output_dir="voice-agent-model",
             num_epochs=10,
             batch_size=8,
             learning_rate=2e-5

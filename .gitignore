@@ -69,3 +69,13 @@ Thumbs.db
 .ruff_cache
 .ipynb_checkpoints
 config.json
+
+credentials.yml
+.rasa/
+.ngrok2/
+actions/
+data/
+tests/
+config.yml
+domain.yml
+endpoints.yml

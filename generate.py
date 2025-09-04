@@ -1,4 +1,4 @@
-# Copyright 2024-2025 The Alibaba Wan Team Authors. All rights reserved.
+
 import argparse
 import logging
 import os
@@ -14,11 +14,11 @@ import torch
 import torch.distributed as dist
 from PIL import Image
 
-import wan
-from wan.configs import MAX_AREA_CONFIGS, SIZE_CONFIGS, SUPPORTED_SIZES, WAN_CONFIGS
-from wan.distributed.util import init_distributed_group
-from wan.utils.prompt_extend import DashScopePromptExpander, QwenPromptExpander
-from wan.utils.utils import merge_video_audio, save_video, str2bool
+import stree
+from stree.configs import MAX_AREA_CONFIGS, SIZE_CONFIGS, SUPPORTED_SIZES, STREE_CONFIGS
+from stree.distributed.util import init_distributed_group
+from stree.utils.prompt_extend import DashScopePromptExpander, QwenPromptExpander
+from stree.utils.utils import merge_video_audio, save_video, str2bool
 
 EXAMPLE_PROMPT = {
     "t2v-A14B": {
@@ -49,7 +49,7 @@ EXAMPLE_PROMPT = {
 def _validate_args(args):
     # Basic check
     assert args.ckpt_dir is not None, "Please specify the checkpoint directory."
-    assert args.task in WAN_CONFIGS, f"Unsupport task: {args.task}"
+    assert args.task in STREE_CONFIGS, f"Unsupport task: {args.task}"
     assert args.task in EXAMPLE_PROMPT, f"Unsupport task: {args.task}"
 
     if args.prompt is None:
@@ -62,7 +62,7 @@ def _validate_args(args):
     if args.task == "i2v-A14B":
         assert args.image is not None, "Please specify the image path for i2v."
 
-    cfg = WAN_CONFIGS[args.task]
+    cfg = STREE_CONFIGS[args.task]
 
     if args.sample_steps is None:
         args.sample_steps = cfg.sample_steps
@@ -87,13 +87,13 @@ def _validate_args(args):
 
 def _parse_args():
     parser = argparse.ArgumentParser(
-        description="Generate a image or video from a text prompt or image using Wan"
+        description="Generate a image or video from a text prompt or image using Stree"
     )
     parser.add_argument(
         "--task",
         type=str,
         default="t2v-A14B",
-        choices=list(WAN_CONFIGS.keys()),
+        choices=list(STREE_CONFIGS.keys()),
         help="The task to run.")
     parser.add_argument(
         "--size",
@@ -300,7 +300,7 @@ def generate(args):
             raise NotImplementedError(
                 f"Unsupport prompt_extend_method: {args.prompt_extend_method}")
 
-    cfg = WAN_CONFIGS[args.task]
+    cfg = STREE_CONFIGS[args.task]
     if args.ulysses_size > 1:
         assert cfg.num_heads % args.ulysses_size == 0, f"`{cfg.num_heads=}` cannot be divided evenly by `{args.ulysses_size=}`."
 

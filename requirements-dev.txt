@@ -1,0 +1,39 @@
+# Development and Testing Dependencies
+
+# Code Quality Tools
+black>=22.0.0
+isort>=5.10.0
+yapf>=0.32.0
+flake8>=4.0.0
+mypy>=0.991
+
+# Testing Tools
+pytest>=7.0.0
+pytest-cov>=4.0.0
+pytest-mock>=3.10.0
+pytest-asyncio>=0.21.0
+
+# Documentation Tools
+sphinx>=5.0.0
+sphinx-rtd-theme>=1.2.0
+myst-parser>=0.18.0
+
+# Development Utilities
+pre-commit>=2.20.0
+tox>=4.0.0
+coverage>=6.5.0
+
+# Type Checking
+types-requests>=2.28.0
+types-PyYAML>=6.0.0
+
+# Jupyter (for development notebooks)
+jupyter>=1.0.0
+ipykernel>=6.0.0
+
+# Debugging Tools
+ipdb>=0.13.0
+memory-profiler>=0.60.0
+
+# Performance Testing
+pytest-benchmark>=4.0.0 

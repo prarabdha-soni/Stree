@@ -13,3 +13,6 @@ dashscope
 imageio-ffmpeg
 flash_attn
 numpy>=1.23.5,<2
+librosa>=0.10.0
+opencv-python<4.9.0
+scipy>=1.11.0

@@ -1,5 +1,5 @@
 .PHONY: format
 
 format:
-	isort generate.py wan
-	yapf -i -r *.py generate.py wan
+	isort generate.py stree
+	yapf -i -r *.py generate.py stree

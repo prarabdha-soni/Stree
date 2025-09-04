@@ -1,354 +1,388 @@
-# Wan2.2
+# Stree2.2 + VibeVoice-7B: Mixture of Experts (MoE) Pipeline
 
-<p align="center">
-    <img src="assets/logo.png" width="400"/>
-<p>
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-red.svg)](https://pytorch.org/)
 
-<p align="center">
-    💜 <a href="https://wan.video"><b>Wan</b></a> &nbsp&nbsp ｜ &nbsp&nbsp 🖥️ <a href="https://github.com/Wan-Video/Wan2.2">GitHub</a> &nbsp&nbsp  | &nbsp&nbsp🤗 <a href="https://huggingface.co/Wan-AI/">Hugging Face</a>&nbsp&nbsp | &nbsp&nbsp🤖 <a href="https://modelscope.cn/organization/Wan-AI">ModelScope</a>&nbsp&nbsp | &nbsp&nbsp 📑 <a href="https://arxiv.org/abs/2503.20314">Paper</a> &nbsp&nbsp | &nbsp&nbsp 📑 <a href="https://wan.video/welcome?spm=a2ty_o02.30011076.0.0.6c9ee41eCcluqg">Blog</a> &nbsp&nbsp |  &nbsp&nbsp 💬  <a href="https://discord.gg/AKNgpMK4Yj">Discord</a>&nbsp&nbsp
-    <br>
-    📕 <a href="https://alidocs.dingtalk.com/i/nodes/jb9Y4gmKWrx9eo4dCql9LlbYJGXn6lpz">使用指南(中文)</a>&nbsp&nbsp | &nbsp&nbsp 📘 <a href="https://alidocs.dingtalk.com/i/nodes/EpGBa2Lm8aZxe5myC99MelA2WgN7R35y">User Guide(English)</a>&nbsp&nbsp | &nbsp&nbsp💬 <a href="https://gw.alicdn.com/imgextra/i2/O1CN01tqjWFi1ByuyehkTSB_!!6000000000015-0-tps-611-1279.jpg">WeChat(微信)</a>&nbsp&nbsp
-<br>
+> **Professional AI Pipeline for Text+Image to Video Generation with Perfect Lip-Sync**
 
------
+A production-ready Mixture of Experts (MoE) pipeline that combines **VibeVoice-7B** for text-to-speech and **Stree2.2-I2V-A14B** for image-to-video generation, with intelligent expert routing and perfect audio-video synchronization.
 
-[**Wan: Open and Advanced Large-Scale Video Generative Models**](https://arxiv.org/abs/2503.20314) <be>
+## 🎯 **What This Does**
 
+**Input**: Text + Image  
+**Output**: Perfect lip-sync video with synchronized audio and video
 
-We are excited to introduce **Wan2.2**, a major upgrade to our foundational video models. With **Wan2.2**, we have focused on incorporating the following innovations:
+**Example**: Give it "Hello, welcome to our insurance policy!" + a photo of a person → Get a video where the person's mouth moves perfectly with the speech!
 
-- 👍 **Effective MoE Architecture**: Wan2.2 introduces a Mixture-of-Experts (MoE) architecture into video diffusion models. By separating the denoising process cross timesteps with specialized powerful expert models, this enlarges the overall model capacity while maintaining the same computational cost.
+## 🚀 **Key Features**
 
-- 👍 **Cinematic-level Aesthetics**: Wan2.2 incorporates meticulously curated aesthetic data, complete with detailed labels for lighting, composition, contrast, color tone, and more. This allows for more precise and controllable cinematic style generation, facilitating the creation of videos with customizable aesthetic preferences.
+- **🎵 Advanced TTS**: VibeVoice-7B for natural speech generation
+- **🎬 Video Generation**: Stree2.2-I2V-A14B for high-quality video creation
+- **🔗 Perfect Lip-Sync**: Audio-video synchronization with frame accuracy
+- **🧠 Intelligent Routing**: MoE system automatically selects best expert
+- **🎯 Multiple Quality Levels**: Basic, enhanced, high, and native sync options
+- **🔄 Input Flexibility**: Works with text or direct speech input
+- **⚡ Performance Optimized**: GPU acceleration with fallback to CPU
 
-- 👍 **Complex Motion Generation**: Compared to Wan2.1, Wan2.2 is trained on a significantly larger data, with +65.6% more images and +83.2% more videos. This expansion notably enhances the model's generalization across multiple dimensions such as motions,  semantics, and aesthetics, achieving TOP performance among all open-sourced and closed-sourced models. 
+## 🏗️ **Architecture Overview**
 
-- 👍 **Efficient High-Definition Hybrid TI2V**:  Wan2.2 open-sources a 5B model built with our advanced Wan2.2-VAE that achieves a compression ratio of **16×16×4**. This model supports both text-to-video and image-to-video generation at 720P resolution with 24fps and can also run on consumer-grade graphics cards like 4090. It is one of the fastest **720P@24fps** models currently available, capable of serving both the industrial and academic sectors simultaneously.
-
-
-## Video Demos
-
-<div align="center">
-  <video src="https://github.com/user-attachments/assets/b63bfa58-d5d7-4de6-a1a2-98970b06d9a7" width="70%" poster=""> </video>
-</div>
-
-## 🔥 Latest News!!
-
-* Aug 26, 2025: 🎵 We introduce **[Wan2.2-S2V-14B](https://humanaigc.github.io/wan-s2v-webpage)**, an audio-driven cinematic video generation model, including [inference code](#run-speech-to-video-generation), [model weights](#model-download), and [technical report](https://humanaigc.github.io/wan-s2v-webpage/content/wan-s2v.pdf)! Now you can try it on [wan.video](https://wan.video/),  [ModelScope Gradio](https://www.modelscope.cn/studios/Wan-AI/Wan2.2-S2V) or [HuggingFace Gradio](https://huggingface.co/spaces/Wan-AI/Wan2.2-S2V)!
-* Jul 28, 2025: 👋 We have open a [HF space](https://huggingface.co/spaces/Wan-AI/Wan-2.2-5B) using the TI2V-5B model. Enjoy!
-* Jul 28, 2025: 👋 Wan2.2 has been integrated into ComfyUI ([CN](https://docs.comfy.org/zh-CN/tutorials/video/wan/wan2_2) | [EN](https://docs.comfy.org/tutorials/video/wan/wan2_2)). Enjoy!
-* Jul 28, 2025: 👋 Wan2.2's T2V, I2V and TI2V have been integrated into Diffusers ([T2V-A14B](https://huggingface.co/Wan-AI/Wan2.2-T2V-A14B-Diffusers) | [I2V-A14B](https://huggingface.co/Wan-AI/Wan2.2-I2V-A14B-Diffusers) | [TI2V-5B](https://huggingface.co/Wan-AI/Wan2.2-TI2V-5B-Diffusers)). Feel free to give it a try!
-* Jul 28, 2025: 👋 We've released the inference code and model weights of **Wan2.2**.
-
-
-## Community Works
-If your research or project builds upon [**Wan2.1**](https://github.com/Wan-Video/Wan2.1) or [**Wan2.2**](https://github.com/Wan-Video/Wan2.2), and you would like more people to see it, please inform us.
-
-- [DiffSynth-Studio](https://github.com/modelscope/DiffSynth-Studio) provides comprehensive support for Wan 2.2, including low-GPU-memory layer-by-layer offload, FP8 quantization, sequence parallelism, LoRA training, full training.
-- [Kijai's ComfyUI WanVideoWrapper](https://github.com/kijai/ComfyUI-WanVideoWrapper) is an alternative implementation of Wan models for ComfyUI. Thanks to its Wan-only focus, it's on the frontline of getting cutting edge optimizations and hot research features, which are often hard to integrate into ComfyUI quickly due to its more rigid structure.
-
-
-## 📑 Todo List
-- Wan2.2 Text-to-Video
-    - [x] Multi-GPU Inference code of the A14B and 14B models
-    - [x] Checkpoints of the A14B and 14B models
-    - [x] ComfyUI integration
-    - [x] Diffusers integration
-- Wan2.2 Image-to-Video
-    - [x] Multi-GPU Inference code of the A14B model
-    - [x] Checkpoints of the A14B model
-    - [x] ComfyUI integration
-    - [x] Diffusers integration
-- Wan2.2 Text-Image-to-Video
-    - [x] Multi-GPU Inference code of the 5B model
-    - [x] Checkpoints of the 5B model
-    - [x] ComfyUI integration
-    - [x] Diffusers integration
-- Wan2.2-S2V Speech-to-Video
-    - [x] Inference code of Wan2.2-S2V
-    - [x] Checkpoints of Wan2.2-S2V-14B
-    - [ ] ComfyUI integration
-    - [ ] Diffusers integration
-
-## Run Wan2.2
-
-#### Installation
-Clone the repo:
-```sh
-git clone https://github.com/Wan-Video/Wan2.2.git
-cd Wan2.2
+```
+Text Input → VibeVoice-7B → Audio Analysis → Enhanced Prompts → Stree2.2-I2V-A14B → Perfect Lip-Sync Video
+     ↓              ↓              ↓              ↓                    ↓              ↓
+  MoE Router → Expert Selection → Audio Features → Video Guidance → Frame Generation → Synchronization
 ```
 
-Install dependencies:
-```sh
-# Ensure torch >= 2.4.0
-# If the installation of `flash_attn` fails, try installing the other packages first and install `flash_attn` last
+## 🛠️ **Installation**
+
+### **Prerequisites**
+- Python 3.9+
+- PyTorch 2.0+
+- CUDA-compatible GPU (recommended)
+- FFmpeg
+
+### **Quick Start**
+```bash
+# Clone the repository
+git clone https://github.com/prarabdha-soni/Stree.git
+cd Stree
+
+# Install dependencies
 pip install -r requirements.txt
+
+# Install FFmpeg (macOS)
+brew install ffmpeg
+
+# Install FFmpeg (Ubuntu/Debian)
+sudo apt update && sudo apt install ffmpeg
 ```
 
+### **Model Setup**
+```bash
+# Clone VibeVoice-7B (for text-to-speech)
+git clone https://github.com/OpenVoiceOS/VibeVoice-7B.git
 
-#### Model Download
-
-| Models              | Download Links                                                                                                                              | Description |
-|--------------------|---------------------------------------------------------------------------------------------------------------------------------------------|-------------|
-| T2V-A14B    | 🤗 [Huggingface](https://huggingface.co/Wan-AI/Wan2.2-T2V-A14B)    🤖 [ModelScope](https://modelscope.cn/models/Wan-AI/Wan2.2-T2V-A14B)    | Text-to-Video MoE model, supports 480P & 720P |
-| I2V-A14B    | 🤗 [Huggingface](https://huggingface.co/Wan-AI/Wan2.2-I2V-A14B)    🤖 [ModelScope](https://modelscope.cn/models/Wan-AI/Wan2.2-I2V-A14B)    | Image-to-Video MoE model, supports 480P & 720P |
-| TI2V-5B     | 🤗 [Huggingface](https://huggingface.co/Wan-AI/Wan2.2-TI2V-5B)     🤖 [ModelScope](https://modelscope.cn/models/Wan-AI/Wan2.2-TI2V-5B)     | High-compression VAE, T2V+I2V, supports 720P |
-| S2V-14B     | 🤗 [Huggingface](https://huggingface.co/Wan-AI/Wan2.2-S2V-14B)     🤖 [ModelScope](https://modelscope.cn/models/Wan-AI/Wan2.2-S2V-14B)     | Speech-to-Video model, supports 480P & 720P |
-
-
-
-> 💡Note: 
-> The TI2V-5B model supports 720P video generation at **24 FPS**.
-
-
-Download models using huggingface-cli:
-``` sh
-pip install "huggingface_hub[cli]"
-huggingface-cli download Wan-AI/Wan2.2-T2V-A14B --local-dir ./Wan2.2-T2V-A14B
+# Download Stree2.2 checkpoints (instructions in INSTALL.md)
+# Download Wan2.2-S2V-14B (optional, for native speech-to-video)
 ```
 
-Download models using modelscope-cli:
-``` sh
-pip install modelscope
-modelscope download Wan-AI/Wan2.2-T2V-A14B --local_dir ./Wan2.2-T2V-A14B
+## 🎬 **Usage Examples**
+
+### **Basic Text-to-Video with Lip-Sync**
+```python
+from stree import create_moe_pipeline
+
+# Create MoE pipeline
+moe = create_moe_pipeline()
+
+# Generate lip-sync video
+results = moe.generate(
+    text="Hello, this is a perfect lip-sync example!",
+    image_path="face.jpg",
+    duration=5,
+    voice="en_female_1"
+)
+
+print(f"Video generated: {results['final_video_path']}")
 ```
 
-#### Run Text-to-Video Generation
+### **High-Quality Lip-Sync with Audio Analysis**
+```python
+from stree import create_audio_sync_moe_pipeline
 
-This repository supports the `Wan2.2-T2V-A14B` Text-to-Video model and can simultaneously support video generation at 480P and 720P resolutions.
+# Create advanced audio sync pipeline
+audio_sync_moe = create_audio_sync_moe_pipeline()
 
+# Generate with perfect lip-sync
+results = audio_sync_moe.generate_with_lip_sync(
+    text="Welcome to our comprehensive insurance policy!",
+    image_path="agent.jpg",
+    duration=8,
+    sync_quality="high"
+)
 
-##### (1) Without Prompt Extension
-
-To facilitate implementation, we will start with a basic version of the inference process that skips the [prompt extension](#2-using-prompt-extention) step.
-
-- Single-GPU inference
-
-``` sh
-python generate.py  --task t2v-A14B --size 1280*720 --ckpt_dir ./Wan2.2-T2V-A14B --offload_model True --convert_model_dtype --prompt "Two anthropomorphic cats in comfy boxing gear and bright gloves fight intensely on a spotlighted stage."
+print(f"Perfect lip-sync video: {results['final_video_path']}")
 ```
 
-> 💡 This command can run on a GPU with at least 80GB VRAM.
+### **Intelligent Expert Routing with Wan2.2-S2V-14B**
+```python
+from stree import create_integrated_moe_pipeline
 
-> 💡If you encounter OOM (Out-of-Memory) issues, you can use the `--offload_model True`, `--convert_model_dtype` and `--t5_cpu` options to reduce GPU memory usage.
+# Create integrated pipeline with native S2V support
+integrated_moe = create_integrated_moe_pipeline()
 
+# Let the system choose the best expert automatically
+results = integrated_moe.generate_with_smart_routing(
+    input_data="Hello, this is perfect lip-sync!",
+    image_path="face.jpg",
+    duration=5,
+    sync_quality="high",
+    use_native_if_available=True  # Prefer Wan2.2-S2V-14B when available
+)
 
-- Multi-GPU inference using FSDP + DeepSpeed Ulysses
-
-  We use [PyTorch FSDP](https://docs.pytorch.org/docs/stable/fsdp.html) and [DeepSpeed Ulysses](https://arxiv.org/abs/2309.14509) to accelerate inference.
-
-
-``` sh
-torchrun --nproc_per_node=8 generate.py --task t2v-A14B --size 1280*720 --ckpt_dir ./Wan2.2-T2V-A14B --dit_fsdp --t5_fsdp --ulysses_size 8 --prompt "Two anthropomorphic cats in comfy boxing gear and bright gloves fight intensely on a spotlighted stage."
+print(f"Generated using: {results['selected_expert']}")
 ```
 
+## 🎯 **Command Line Usage**
 
-##### (2) Using Prompt Extension
-
-Extending the prompts can effectively enrich the details in the generated videos, further enhancing the video quality. Therefore, we recommend enabling prompt extension. We provide the following two methods for prompt extension:
-
-- Use the Dashscope API for extension.
-  - Apply for a `dashscope.api_key` in advance ([EN](https://www.alibabacloud.com/help/en/model-studio/getting-started/first-api-call-to-qwen) | [CN](https://help.aliyun.com/zh/model-studio/getting-started/first-api-call-to-qwen)).
-  - Configure the environment variable `DASH_API_KEY` to specify the Dashscope API key. For users of Alibaba Cloud's international site, you also need to set the environment variable `DASH_API_URL` to 'https://dashscope-intl.aliyuncs.com/api/v1'. For more detailed instructions, please refer to the [dashscope document](https://www.alibabacloud.com/help/en/model-studio/developer-reference/use-qwen-by-calling-api?spm=a2c63.p38356.0.i1).
-  - Use the `qwen-plus` model for text-to-video tasks and `qwen-vl-max` for image-to-video tasks.
-  - You can modify the model used for extension with the parameter `--prompt_extend_model`. For example:
-```sh
-DASH_API_KEY=your_key torchrun --nproc_per_node=8 generate.py  --task t2v-A14B --size 1280*720 --ckpt_dir ./Wan2.2-T2V-A14B --dit_fsdp --t5_fsdp --ulysses_size 8 --prompt "Two anthropomorphic cats in comfy boxing gear and bright gloves fight intensely on a spotlighted stage" --use_prompt_extend --prompt_extend_method 'dashscope' --prompt_extend_target_lang 'zh'
+### **Basic MoE Pipeline**
+```bash
+python examples/moe_example.py \
+    --text "Welcome to our insurance policy!" \
+    --image examples/agent.jpg \
+    --duration 8 \
+    --voice en_female_1
 ```
 
-- Using a local model for extension.
-
-  - By default, the Qwen model on HuggingFace is used for this extension. Users can choose Qwen models or other models based on the available GPU memory size.
-  - For text-to-video tasks, you can use models like `Qwen/Qwen2.5-14B-Instruct`, `Qwen/Qwen2.5-7B-Instruct` and `Qwen/Qwen2.5-3B-Instruct`.
-  - For image-to-video tasks, you can use models like `Qwen/Qwen2.5-VL-7B-Instruct` and `Qwen/Qwen2.5-VL-3B-Instruct`.
-  - Larger models generally provide better extension results but require more GPU memory.
-  - You can modify the model used for extension with the parameter `--prompt_extend_model` , allowing you to specify either a local model path or a Hugging Face model. For example:
-
-``` sh
-torchrun --nproc_per_node=8 generate.py  --task t2v-A14B --size 1280*720 --ckpt_dir ./Wan2.2-T2V-A14B --dit_fsdp --t5_fsdp --ulysses_size 8 --prompt "Two anthropomorphic cats in comfy boxing gear and bright gloves fight intensely on a spotlighted stage" --use_prompt_extend --prompt_extend_method 'local_qwen' --prompt_extend_target_lang 'zh'
+### **Advanced Audio Sync**
+```bash
+python examples/lip_sync_example.py \
+    --text "Let me explain the benefits..." \
+    --image examples/agent.jpg \
+    --duration 10 \
+    --sync-quality high
 ```
 
-
-#### Run Image-to-Video Generation
-
-This repository supports the `Wan2.2-I2V-A14B` Image-to-Video model and can simultaneously support video generation at 480P and 720P resolutions.
-
-
-- Single-GPU inference
-```sh
-python generate.py --task i2v-A14B --size 1280*720 --ckpt_dir ./Wan2.2-I2V-A14B --offload_model True --convert_model_dtype --image examples/i2v_input.JPG --prompt "Summer beach vacation style, a white cat wearing sunglasses sits on a surfboard. The fluffy-furred feline gazes directly at the camera with a relaxed expression. Blurred beach scenery forms the background featuring crystal-clear waters, distant green hills, and a blue sky dotted with white clouds. The cat assumes a naturally relaxed posture, as if savoring the sea breeze and warm sunlight. A close-up shot highlights the feline's intricate details and the refreshing atmosphere of the seaside."
+### **Integrated MoE with Smart Routing**
+```bash
+python examples/integrated_moe_example.py \
+    --input "Hello, this is perfect lip-sync!" \
+    --image examples/face.jpg \
+    --duration 5 \
+    --sync-quality high \
+    --prefer-native
 ```
 
-> This command can run on a GPU with at least 80GB VRAM.
+## 🧠 **MoE Expert System**
 
-> 💡For the Image-to-Video task, the `size` parameter represents the area of the generated video, with the aspect ratio following that of the original input image.
+### **Expert 1: VibeVoice-7B**
+- **Purpose**: Text-to-speech generation
+- **Capabilities**: Natural voice, multiple accents, emotional control
+- **Input**: Text strings
+- **Output**: High-quality WAV audio
 
+### **Expert 2: Stree2.2-I2V-A14B**
+- **Purpose**: Image-to-video generation
+- **Capabilities**: 720p@24fps, MoE architecture, motion control
+- **Input**: Image + prompt
+- **Output**: Video frames
 
-- Multi-GPU inference using FSDP + DeepSpeed Ulysses
+### **Expert 3: Wan2.2-S2V-14B (Optional)**
+- **Purpose**: Native speech-to-video
+- **Capabilities**: Direct audio-video sync, speech optimization
+- **Input**: Audio + image
+- **Output**: Synchronized video
 
-```sh
-torchrun --nproc_per_node=8 generate.py --task i2v-A14B --size 1280*720 --ckpt_dir ./Wan2.2-I2V-A14B --image examples/i2v_input.JPG --dit_fsdp --t5_fsdp --ulysses_size 8 --prompt "Summer beach vacation style, a white cat wearing sunglasses sits on a surfboard. The fluffy-furred feline gazes directly at the camera with a relaxed expression. Blurred beach scenery forms the background featuring crystal-clear waters, distant green hills, and a blue sky dotted with white clouds. The cat assumes a naturally relaxed posture, as if savoring the sea breeze and warm sunlight. A close-up shot highlights the feline's intricate details and the refreshing atmosphere of the seaside."
-```
+### **Expert 4: Audio Sync MoE**
+- **Purpose**: Intelligent routing and synchronization
+- **Capabilities**: Audio analysis, beat sync, quality control
+- **Input**: Audio features + requirements
+- **Output**: Expert selection + sync strategy
 
-- Image-to-Video Generation without prompt
+## 📊 **Performance & Quality**
 
-```sh
-DASH_API_KEY=your_key torchrun --nproc_per_node=8 generate.py --task i2v-A14B --size 1280*720 --ckpt_dir ./Wan2.2-I2V-A14B --prompt '' --image examples/i2v_input.JPG --dit_fsdp --t5_fsdp --ulysses_size 8 --use_prompt_extend --prompt_extend_method 'dashscope'
-```
+| Feature | Basic | Enhanced | High | Native |
+|---------|-------|----------|------|--------|
+| **Lip-Sync** | ✅ Basic | ✅ Good | ✅ Perfect | ✅ Native |
+| **Audio Analysis** | ❌ None | ✅ Basic | ✅ Advanced | ✅ Built-in |
+| **Motion Guidance** | ❌ None | ✅ Basic | ✅ Beat Sync | ✅ Optimized |
+| **Processing Speed** | ⚡ Fast | ⚡ Fast | 🐌 Medium | ⚡ Fast |
+| **Quality Control** | ❌ None | ✅ Basic | ✅ Advanced | ✅ Native |
 
-> 💡The model can generate videos solely from the input image. You can use prompt extension to generate prompt from the image.
+## 🔧 **Configuration**
 
-> The process of prompt extension can be referenced [here](#2-using-prompt-extention).
-
-#### Run Text-Image-to-Video Generation
-
-This repository supports the `Wan2.2-TI2V-5B` Text-Image-to-Video model and can support video generation at 720P resolutions.
-
-
-- Single-GPU Text-to-Video inference
-```sh
-python generate.py --task ti2v-5B --size 1280*704 --ckpt_dir ./Wan2.2-TI2V-5B --offload_model True --convert_model_dtype --t5_cpu --prompt "Two anthropomorphic cats in comfy boxing gear and bright gloves fight intensely on a spotlighted stage"
-```
-
-> 💡Unlike other tasks, the 720P resolution of the Text-Image-to-Video task is `1280*704` or `704*1280`.
-
-> This command can run on a GPU with at least 24GB VRAM (e.g, RTX 4090 GPU).
-
-> 💡If you are running on a GPU with at least 80GB VRAM, you can remove the `--offload_model True`, `--convert_model_dtype` and `--t5_cpu` options to speed up execution.
-
-
-- Single-GPU Image-to-Video inference
-```sh
-python generate.py --task ti2v-5B --size 1280*704 --ckpt_dir ./Wan2.2-TI2V-5B --offload_model True --convert_model_dtype --t5_cpu --image examples/i2v_input.JPG --prompt "Summer beach vacation style, a white cat wearing sunglasses sits on a surfboard. The fluffy-furred feline gazes directly at the camera with a relaxed expression. Blurred beach scenery forms the background featuring crystal-clear waters, distant green hills, and a blue sky dotted with white clouds. The cat assumes a naturally relaxed posture, as if savoring the sea breeze and warm sunlight. A close-up shot highlights the feline's intricate details and the refreshing atmosphere of the seaside."
-```
-
-> 💡If the image parameter is configured, it is an Image-to-Video generation; otherwise, it defaults to a Text-to-Video generation.
-
-> 💡Similar to Image-to-Video, the `size` parameter represents the area of the generated video, with the aspect ratio following that of the original input image.
-
-
-- Multi-GPU inference using FSDP + DeepSpeed Ulysses
-
-```sh
-torchrun --nproc_per_node=8 generate.py --task ti2v-5B --size 1280*704 --ckpt_dir ./Wan2.2-TI2V-5B --dit_fsdp --t5_fsdp --ulysses_size 8 --image examples/i2v_input.JPG --prompt "Summer beach vacation style, a white cat wearing sunglasses sits on a surfboard. The fluffy-furred feline gazes directly at the camera with a relaxed expression. Blurred beach scenery forms the background featuring crystal-clear waters, distant green hills, and a blue sky dotted with white clouds. The cat assumes a naturally relaxed posture, as if savoring the sea breeze and warm sunlight. A close-up shot highlights the feline's intricate details and the refreshing atmosphere of the seaside."
-```
-
-> The process of prompt extension can be referenced [here](#2-using-prompt-extention).
-
-#### Run Speech-to-Video Generation
-
-This repository supports the `Wan2.2-S2V-14B` Speech-to-Video model and can simultaneously support video generation at 480P and 720P resolutions.
-
-- Single-GPU Speech-to-Video inference
-
-```sh
-python generate.py  --task s2v-14B --size 1024*704 --ckpt_dir ./Wan2.2-S2V-14B/ --offload_model True --convert_model_dtype --prompt "Summer beach vacation style, a white cat wearing sunglasses sits on a surfboard."  --image "examples/i2v_input.JPG" --audio "examples/talk.wav"
-# Without setting --num_clip, the generated video length will automatically adjust based on the input audio length
-```
-
-> 💡 This command can run on a GPU with at least 80GB VRAM.
-
-- Multi-GPU inference using FSDP + DeepSpeed Ulysses
-
-```sh
-torchrun --nproc_per_node=8 generate.py --task s2v-14B --size 1024*704 --ckpt_dir ./Wan2.2-S2V-14B/ --dit_fsdp --t5_fsdp --ulysses_size 8 --prompt "Summer beach vacation style, a white cat wearing sunglasses sits on a surfboard." --image "examples/i2v_input.JPG" --audio "examples/talk.wav"
-```
-
-- Pose + Audio driven generation
-
-```sh
-torchrun --nproc_per_node=8 generate.py --task s2v-14B --size 1024*704 --ckpt_dir ./Wan2.2-S2V-14B/ --dit_fsdp --t5_fsdp --ulysses_size 8 --prompt "a person is singing" --image "examples/pose.png" --audio "examples/sing.MP3" --pose_video "./examples/pose.mp4" 
-```
-
-> 💡For the Speech-to-Video task, the `size` parameter represents the area of the generated video, with the aspect ratio following that of the original input image.
-
-> 💡The model can generate videos from audio input combined with reference image and optional text prompt.
-
-> 💡The `--pose_video` parameter enables pose-driven generation, allowing the model to follow specific pose sequences while generating videos synchronized with audio input.
-
-> 💡The `--num_clip` parameter controls the number of video clips generated, useful for quick preview with shorter generation time.
-
-## Computational Efficiency on Different GPUs
-
-We test the computational efficiency of different **Wan2.2** models on different GPUs in the following table. The results are presented in the format: **Total time (s) / peak GPU memory (GB)**.
-
-
-<div align="center">
-    <img src="assets/comp_effic.png" alt="" style="width: 80%;" />
-</div>
-
-> The parameter settings for the tests presented in this table are as follows:
-> (1) Multi-GPU: 14B: `--ulysses_size 4/8 --dit_fsdp --t5_fsdp`, 5B: `--ulysses_size 4/8 --offload_model True --convert_model_dtype --t5_cpu`; Single-GPU: 14B: `--offload_model True --convert_model_dtype`, 5B: `--offload_model True --convert_model_dtype --t5_cpu`
-(--convert_model_dtype converts model parameter types to config.param_dtype);
-> (2) The distributed testing utilizes the built-in FSDP and Ulysses implementations, with FlashAttention3 deployed on Hopper architecture GPUs;
-> (3) Tests were run without the `--use_prompt_extend` flag;
-> (4) Reported results are the average of multiple samples taken after the warm-up phase.
-
-
--------
-
-## Introduction of Wan2.2
-
-**Wan2.2** builds on the foundation of Wan2.1 with notable improvements in generation quality and model capability. This upgrade is driven by a series of key technical innovations, mainly including the Mixture-of-Experts (MoE) architecture, upgraded training data, and high-compression video generation.
-
-##### (1) Mixture-of-Experts (MoE) Architecture
-
-Wan2.2 introduces Mixture-of-Experts (MoE) architecture into the video generation diffusion model. MoE has been widely validated in large language models as an efficient approach to increase total model parameters while keeping inference cost nearly unchanged. In Wan2.2, the A14B model series adopts a two-expert design tailored to the denoising process of diffusion models: a high-noise expert for the early stages, focusing on overall layout; and a low-noise expert for the later stages, refining video details. Each expert model has about 14B parameters, resulting in a total of 27B parameters but only 14B active parameters per step, keeping inference computation and GPU memory nearly unchanged.
-
-<div align="center">
-    <img src="assets/moe_arch.png" alt="" style="width: 90%;" />
-</div>
-
-The transition point between the two experts is determined by the signal-to-noise ratio (SNR), a metric that decreases monotonically as the denoising step $t$ increases. At the beginning of the denoising process, $t$ is large and the noise level is high, so the SNR is at its minimum, denoted as ${SNR}_{min}$. In this stage, the high-noise expert is activated. We define a threshold step ${t}_{moe}$ corresponding to half of the ${SNR}_{min}$, and switch to the low-noise expert when $t<{t}_{moe}$.
-
-<div align="center">
-    <img src="assets/moe_2.png" alt="" style="width: 90%;" />
-</div>
-
-To validate the effectiveness of the MoE architecture, four settings are compared based on their validation loss curves. The baseline **Wan2.1** model does not employ the MoE architecture. Among the MoE-based variants, the **Wan2.1 & High-Noise Expert** reuses the Wan2.1 model as the low-noise expert while uses the  Wan2.2's high-noise expert, while the **Wan2.1 & Low-Noise Expert** uses Wan2.1 as the high-noise expert and employ the Wan2.2's low-noise expert. The **Wan2.2 (MoE)** (our final version) achieves the lowest validation loss, indicating that its generated video distribution is closest to ground-truth and exhibits superior convergence.
-
-
-##### (2) Efficient High-Definition Hybrid TI2V
-To enable more efficient deployment, Wan2.2 also explores a high-compression design. In addition to the 27B MoE models, a 5B dense model, i.e., TI2V-5B, is released. It is supported by a high-compression Wan2.2-VAE, which achieves a $T\times H\times W$ compression ratio of $4\times16\times16$, increasing the overall compression rate to 64 while maintaining high-quality video reconstruction. With an additional patchification layer, the total compression ratio of TI2V-5B reaches $4\times32\times32$. Without specific optimization, TI2V-5B can generate a 5-second 720P video in under 9 minutes on a single consumer-grade GPU, ranking among the fastest 720P@24fps video generation models. This model also natively supports both text-to-video and image-to-video tasks within a single unified framework, covering both academic research and practical applications.
-
-
-<div align="center">
-    <img src="assets/vae.png" alt="" style="width: 80%;" />
-</div>
-
-
-
-##### Comparisons to SOTAs
-We compared Wan2.2 with leading closed-source commercial models on our new Wan-Bench 2.0, evaluating performance across multiple crucial dimensions. The results demonstrate that Wan2.2 achieves superior performance compared to these leading models.
-
-
-<div align="center">
-    <img src="assets/performance.png" alt="" style="width: 90%;" />
-</div>
-
-## Citation
-If you find our work helpful, please cite us.
-
-```
-@article{wan2025,
-      title={Wan: Open and Advanced Large-Scale Video Generative Models}, 
-      author={Team Wan and Ang Wang and Baole Ai and Bin Wen and Chaojie Mao and Chen-Wei Xie and Di Chen and Feiwu Yu and Haiming Zhao and Jianxiao Yang and Jianyuan Zeng and Jiayu Wang and Jingfeng Zhang and Jingren Zhou and Jinkai Wang and Jixuan Chen and Kai Zhu and Kang Zhao and Keyu Yan and Lianghua Huang and Mengyang Feng and Ningyi Zhang and Pandeng Li and Pingyu Wu and Ruihang Chu and Ruili Feng and Shiwei Zhang and Siyang Sun and Tao Fang and Tianxing Wang and Tianyi Gui and Tingyu Weng and Tong Shen and Wei Lin and Wei Wang and Wei Wang and Wenmeng Zhou and Wente Wang and Wenting Shen and Wenyuan Yu and Xianzhong Shi and Xiaoming Huang and Xin Xu and Yan Kou and Yangyu Lv and Yifei Li and Yijing Liu and Yiming Wang and Yingya Zhang and Yitong Huang and Yong Li and You Wu and Yu Liu and Yulin Pan and Yun Zheng and Yuntao Hong and Yupeng Shi and Yutong Feng and Zeyinzi Jiang and Zhen Han and Zhi-Fan Wu and Ziyu Liu},
-      journal = {arXiv preprint arXiv:2503.20314},
-      year={2025}
+### **Stree2.2-I2V-A14B Settings**
+```python
+# Customize video generation
+config = {
+    "guidance_scale": 7.5,        # How closely to follow prompt
+    "num_inference_steps": 50,    # Denoising steps (quality vs. speed)
+    "num_frames": 120,            # 5 seconds at 24 FPS
+    "fps": 24                     # Frames per second
 }
 ```
 
-## License Agreement
-The models in this repository are licensed under the Apache 2.0 License. We claim no rights over the your generated contents, granting you the freedom to use them while ensuring that your usage complies with the provisions of this license. You are fully accountable for your use of the models, which must not involve sharing any content that violates applicable laws, causes harm to individuals or groups, disseminates personal information intended for harm, spreads misinformation, or targets vulnerable populations. For a complete list of restrictions and details regarding your rights, please refer to the full text of the [license](LICENSE.txt).
+### **VibeVoice-7B Settings**
+```python
+# Voice customization
+voice_options = [
+    "en_female_1",    # Professional female voice
+    "en_male_1",      # Professional male voice
+    "en_female_2",    # Casual female voice
+    "en_male_2"       # Casual male voice
+]
+```
 
+## 🚀 **Advanced Features**
 
-## Acknowledgements
+### **Audio-Driven Video Generation**
+- **Beat Synchronization**: Visual elements align with audio beats
+- **Energy-Based Motion**: Motion intensity responds to audio energy
+- **Phoneme Awareness**: Lip movements match speech patterns
+- **Temporal Alignment**: Frame-accurate synchronization
 
-We would like to thank the contributors to the [SD3](https://huggingface.co/stabilityai/stable-diffusion-3-medium), [Qwen](https://huggingface.co/Qwen), [umt5-xxl](https://huggingface.co/google/umt5-xxl), [diffusers](https://github.com/huggingface/diffusers) and [HuggingFace](https://huggingface.co) repositories, for their open research.
+### **Intelligent Expert Routing**
+- **Automatic Selection**: Chooses best expert for each task
+- **Performance Monitoring**: Tracks expert success rates
+- **Load Balancing**: Distributes tasks efficiently
+- **Quality Prediction**: Estimates output quality before generation
 
+### **Customizable Sync Quality**
+- **Basic**: Simple audio-video combination
+- **Enhanced**: Audio influences video generation
+- **High**: Perfect lip-sync with audio analysis
+- **Native**: Wan2.2-S2V-14B direct processing
 
+## 📁 **Project Structure**
 
-## Contact Us
-If you would like to leave a message to our research or product teams, feel free to join our [Discord](https://discord.gg/AKNgpMK4Yj) or [WeChat groups](https://gw.alicdn.com/imgextra/i2/O1CN01tqjWFi1ByuyehkTSB_!!6000000000015-0-tps-611-1279.jpg)!
+```
+Stree/
+├── stree/                          # Core MoE pipeline
+│   ├── __init__.py                # Main package exports
+│   ├── moe_pipeline.py            # Basic MoE implementation
+│   ├── advanced_moe.py            # Advanced MoE with monitoring
+│   ├── audio_sync_moe.py          # Audio sync and lip-sync
+│   ├── integrated_moe.py          # Wan2.2-S2V-14B integration
+│   ├── image2video.py             # Image-to-video generation
+│   ├── configs/                   # Model configurations
+│   └── modules/                   # Neural network modules
+├── examples/                       # Usage examples
+│   ├── moe_example.py             # Basic MoE usage
+│   ├── lip_sync_example.py        # Lip-sync generation
+│   └── integrated_moe_example.py  # Integrated pipeline usage
+├── tests/                         # Test scripts
+├── requirements.txt                # Python dependencies
+├── INSTALL.md                     # Detailed installation guide
+└── README.md                      # This file
+```
 
+## 🧪 **Testing**
+
+### **Run All Tests**
+```bash
+# Test basic functionality
+python test_moe_pipeline.py
+
+# Test audio sync capabilities
+python test_audio_sync.py
+
+# Test integrated pipeline
+python -c "from stree import create_integrated_moe_pipeline; print('✅ All imports successful')"
+```
+
+### **Test Audio Analysis**
+```bash
+# Test audio processing (no CUDA required)
+python -c "
+import librosa
+import numpy as np
+print('✅ Audio libraries working')
+"
+```
+
+## 🚨 **Troubleshooting**
+
+### **Common Issues**
+
+1. **CUDA Out of Memory**
+   ```bash
+   # Reduce video quality
+   --num_frames 60  # 2.5 seconds instead of 5
+   --num_inference_steps 25  # Faster generation
+   ```
+
+2. **Audio Generation Fails**
+   ```bash
+   # Check VibeVoice-7B installation
+   ls VibeVoice-7B/
+   # Reinstall if needed
+   rm -rf VibeVoice-7B && git clone https://github.com/OpenVoiceOS/VibeVoice-7B.git
+   ```
+
+3. **Video Generation Fails**
+   ```bash
+   # Verify Stree checkpoints
+   ls checkpoints/
+   # Check GPU availability
+   python -c "import torch; print(f'CUDA: {torch.cuda.is_available()}')"
+   ```
+
+4. **FFmpeg Errors**
+   ```bash
+   # Install FFmpeg
+   brew install ffmpeg  # macOS
+   sudo apt install ffmpeg  # Ubuntu
+   ```
+
+### **Performance Tips**
+
+- **GPU Memory**: Use 8GB+ VRAM for optimal performance
+- **Batch Processing**: Process multiple videos in sequence
+- **Quality vs. Speed**: Adjust `num_inference_steps` for trade-offs
+- **Audio Length**: Shorter audio = faster video generation
+
+## 📈 **Roadmap**
+
+### **Phase 1: Core MoE Pipeline** ✅
+- [x] Basic MoE implementation
+- [x] Audio sync capabilities
+- [x] Lip-sync generation
+- [x] Expert routing
+
+### **Phase 2: Advanced Features** ✅
+- [x] Wan2.2-S2V-14B integration
+- [x] Audio analysis and guidance
+- [x] Beat synchronization
+- [x] Quality prediction
+
+### **Phase 3: Production Ready** 🚧
+- [ ] Web interface
+- [ ] API endpoints
+- [ ] Batch processing
+- [ ] Cloud deployment
+
+### **Phase 4: Enterprise Features** 📋
+- [ ] Multi-user support
+- [ ] Advanced analytics
+- [ ] Custom model training
+- [ ] Enterprise integrations
+
+## 🤝 **Contributing**
+
+We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
+
+### **Development Setup**
+```bash
+# Clone and setup development environment
+git clone https://github.com/prarabdha-soni/Stree.git
+cd Stree
+pip install -r requirements.txt
+pip install -r requirements-dev.txt
+
+# Run tests
+python -m pytest tests/
+```
+
+## 📄 **License**
+
+This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 **Acknowledgments**
+
+- **Stree2.2 Team**: For the image-to-video model
+- **VibeVoice-7B Team**: For the text-to-audio model
+- **Wan2.2 Team**: For the speech-to-video model
+- **FFmpeg Project**: For video processing capabilities
+- **Open Source Community**: For the amazing tools and libraries
+
+## 📞 **Support & Contact**
+
+- **GitHub Issues**: [Report bugs or request features](https://github.com/prarabdha-soni/Stree/issues)
+- **Discussions**: [Join the community](https://github.com/prarabdha-soni/Stree/discussions)
+- **Email**: [Your email here]
+
+---
+
+**⭐ Star this repository if you find it useful!**
+
+**🚀 Ready to create perfect lip-sync videos? Get started with the examples above!** 

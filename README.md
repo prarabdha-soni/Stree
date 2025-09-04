@@ -8,12 +8,28 @@
 
 A production-ready Mixture of Experts (MoE) pipeline that combines **VibeVoice-7B** for text-to-speech and **Stree2.2-I2V-A14B** for image-to-video generation, with intelligent expert routing and perfect audio-video synchronization.
 
+## 🎬 **See It In Action!**
+
+<div align="center">
+
+### **Demo 1: Perfect Lip-Sync Generation**
+[![Demo Video 1](assets/b7fb9b2c9dd242e0a24d34b344212530_wologo.mp4)](assets/b7fb9b2c9dd242e0a24d34b344212530_wologo.mp4)
+
+### **Demo 2: Advanced Audio-Video Sync**
+[![Demo Video 2](assets/de531115b7ce4f73bad998de6b81cc1b_wologo.mp4)](assets/de531115b7ce4f73bad998de6b81cc1b_wologo.mp4)
+
+*Click on the videos to see the full quality! These demos showcase the perfect lip-sync and audio-video synchronization capabilities.*
+
+</div>
+
 ## 🎯 **What This Does**
 
 **Input**: Text + Image  
 **Output**: Perfect lip-sync video with synchronized audio and video
 
 **Example**: Give it "Hello, welcome to our insurance policy!" + a photo of a person → Get a video where the person's mouth moves perfectly with the speech!
+
+
 
 ## 🚀 **Key Features**
 
@@ -32,6 +48,23 @@ Text Input → VibeVoice-7B → Audio Analysis → Enhanced Prompts → Stree2.2
      ↓              ↓              ↓              ↓                    ↓              ↓
   MoE Router → Expert Selection → Audio Features → Video Guidance → Frame Generation → Synchronization
 ```
+
+### **System Architecture Visuals**
+
+![MoE Architecture](assets/moe_arch.png)
+*Mixture of Experts (MoE) architecture showing expert routing and load balancing*
+
+![Performance Metrics](assets/performance.png)
+*Performance comparison showing the efficiency gains of the MoE approach*
+
+![Computational Efficiency](assets/comp_effic.png)
+*Computational efficiency improvements with specialized expert models*
+
+![VAE Architecture](assets/vae.png)
+*Advanced VAE architecture for high-quality video generation*
+
+![MoE Implementation](assets/moe_2.png)
+*Detailed MoE implementation showing expert selection and routing*
 
 ## 🛠️ **Installation**
 

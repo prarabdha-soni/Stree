@@ -1,5 +1,9 @@
 # Stree2.2 + VibeVoice-7B: Mixture of Experts (MoE) Pipeline
 
+
+https://github.com/user-attachments/assets/961ec461-4e44-49a1-b5d8-a40df06dd142
+
+
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-red.svg)](https://pytorch.org/)

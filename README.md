@@ -13,12 +13,16 @@ A production-ready Mixture of Experts (MoE) pipeline that combines **VibeVoice-7
 <div align="center">
 
 ### **Demo 1: Perfect Lip-Sync Generation**
-[![Demo Video 1](assets/b7fb9b2c9dd242e0a24d34b344212530_wologo.mp4)](assets/b7fb9b2c9dd242e0a24d34b344212530_wologo.mp4)
+[![Demo Video 1](assets/logo.png)](assets/b7fb9b2c9dd242e0a24d34b344212530_wologo.mp4)
+
+**[🎥 Click to Watch Demo 1 - Perfect Lip-Sync](assets/b7fb9b2c9dd242e0a24d34b344212530_wologo.mp4)**
 
 ### **Demo 2: Advanced Audio-Video Sync**
-[![Demo Video 2](assets/de531115b7ce4f73bad998de6b81cc1b_wologo.mp4)](assets/de531115b7ce4f73bad998de6b81cc1b_wologo.mp4)
+[![Demo Video 2](assets/logo.png)](assets/de531115b7ce4f73bad998de6b81cc1b_wologo.mp4)
 
-*Click on the videos to see the full quality! These demos showcase the perfect lip-sync and audio-video synchronization capabilities.*
+**[🎥 Click to Watch Demo 2 - Advanced Audio-Video Sync](assets/de531115b7ce4f73bad998de6b81cc1b_wologo.mp4)**
+
+*Click the links above to download and watch the full-quality demo videos! These demos showcase the perfect lip-sync and audio-video synchronization capabilities.*
 
 </div>
 
@@ -100,6 +104,13 @@ git clone https://github.com/OpenVoiceOS/VibeVoice-7B.git
 ```
 
 ## 🎬 **Usage Examples**
+
+### **Demo Videos**
+Check out the demo videos in the `assets/` folder to see the quality:
+- **`b7fb9b2c9dd242e0a24d34b344212530_wologo.mp4`** - Perfect lip-sync generation
+- **`de531115b7ce4f73bad998de6b81cc1b_wologo.mp4`** - Advanced audio-video synchronization
+
+These videos demonstrate the real-world capabilities of the MoE pipeline!
 
 ### **Basic Text-to-Video with Lip-Sync**
 ```python
@@ -283,6 +294,14 @@ Stree/
 │   ├── moe_example.py             # Basic MoE usage
 │   ├── lip_sync_example.py        # Lip-sync generation
 │   └── integrated_moe_example.py  # Integrated pipeline usage
+├── assets/                         # Demo videos and visual assets
+│   ├── b7fb9b2c9dd242e0a24d34b344212530_wologo.mp4  # Demo 1: Perfect lip-sync
+│   ├── de531115b7ce4f73bad998de6b81cc1b_wologo.mp4  # Demo 2: Audio-video sync
+│   ├── logo.png                    # Project logo
+│   ├── moe_arch.png               # MoE architecture diagram
+│   ├── performance.png             # Performance metrics
+│   ├── comp_effic.png             # Computational efficiency
+│   └── vae.png                    # VAE architecture
 ├── tests/                         # Test scripts
 ├── requirements.txt                # Python dependencies
 ├── INSTALL.md                     # Detailed installation guide

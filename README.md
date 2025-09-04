@@ -12,22 +12,11 @@ A production-ready Mixture of Experts (MoE) pipeline that combines **VibeVoice-7
 
 <div align="center">
 
-### **Demo 1: Perfect Lip-Sync Generation**
-[![Demo Video 1](assets/logo.png)](assets/b7fb9b2c9dd242e0a24d34b344212530_wologo.mp4)
+### **High-Quality MoE Pipeline Showcase**
 
-**[🎥 Click to Watch Demo 1 - Perfect Lip-Sync](assets/b7fb9b2c9dd242e0a24d34b344212530_wologo.mp4)**
+**[🎥 Watch MoE Pipeline Demo](https://drive.google.com/file/d/1Bz3K-J7mghdKJzRFKwFgTUGMVJaADlx9/view?usp=sharing)**
 
-### **Demo 2: Advanced Audio-Video Sync**
-[![Demo Video 2](assets/logo.png)](assets/de531115b7ce4f73bad998de6b81cc1b_wologo.mp4)
-
-**[🎥 Click to Watch Demo 2 - Advanced Audio-Video Sync](assets/de531115b7ce4f73bad998de6b81cc1b_wologo.mp4)**
-
-### **Demo 3: High-Quality MoE Pipeline Showcase**
-[![Demo Video 3 - MoE Pipeline](assets/logo.png)](https://drive.google.com/file/d/1Bz3K-J7mghdKJzRFKwFgTUGMVJaADlx9/view?usp=sharing)
-
-**[🎥 Watch Demo 3 - MoE Pipeline Showcase](https://drive.google.com/file/d/1Bz3K-J7mghdKJzRFKwFgTUGMVJaADlx9/view?usp=sharing)**
-
-*Click the links above to watch the demo videos! The first two are local files, and the third is a Google Drive showcase of our MoE pipeline capabilities.*
+*Click the link above to watch our high-quality demo showcasing the perfect lip-sync and audio-video synchronization capabilities of the MoE pipeline!*
 
 </div>
 
@@ -38,14 +27,10 @@ A production-ready Mixture of Experts (MoE) pipeline that combines **VibeVoice-7
 
 **Example**: Give it "Hello, welcome to our insurance policy!" + a photo of a person → Get a video where the person's mouth moves perfectly with the speech!
 
-## 📹 **Video Demonstrations**
+## 📹 **Video Demonstration**
 
-### **Local Demo Videos**
-- **Perfect Lip-Sync**: See the quality of audio-video synchronization
-- **Advanced Sync**: Experience the enhanced MoE pipeline capabilities
-
-### **Google Drive Showcase**
-For the best viewing experience and highest quality demonstration, check out our **[MoE Pipeline Showcase](https://drive.google.com/file/d/1Bz3K-J7mghdKJzRFKwFgTUGMVJaADlx9/view?usp=sharing)** on Google Drive. This video demonstrates the full capabilities of our system in high resolution.
+### **High-Quality MoE Pipeline Showcase**
+For the best viewing experience and highest quality demonstration, check out our **[MoE Pipeline Showcase](https://drive.google.com/file/d/1Bz3K-J7mghdKJzRFKwFgTUGMVJaADlx9/view?usp=sharing)** on Google Drive. This video demonstrates the full capabilities of our system in high resolution, including perfect lip-sync and audio-video synchronization.
 
 
 
@@ -119,13 +104,8 @@ git clone https://github.com/OpenVoiceOS/VibeVoice-7B.git
 
 ## 🎬 **Usage Examples**
 
-### **Demo Videos**
-Check out the demo videos to see the quality:
-- **`assets/b7fb9b2c9dd242e0a24d34b344212530_wologo.mp4`** - Perfect lip-sync generation
-- **`assets/de531115b7ce4f73bad998de6b81cc1b_wologo.mp4`** - Advanced audio-video synchronization
-- **[Google Drive Demo](https://drive.google.com/file/d/1Bz3K-J7mghdKJzRFKwFgTUGMVJaADlx9/view?usp=sharing)** - High-quality MoE pipeline showcase
-
-These videos demonstrate the real-world capabilities of the MoE pipeline!
+### **Demo Video**
+Check out our **[MoE Pipeline Showcase](https://drive.google.com/file/d/1Bz3K-J7mghdKJzRFKwFgTUGMVJaADlx9/view?usp=sharing)** on Google Drive to see the quality and capabilities of our system in action!
 
 ### **Basic Text-to-Video with Lip-Sync**
 ```python
@@ -309,9 +289,7 @@ Stree/
 │   ├── moe_example.py             # Basic MoE usage
 │   ├── lip_sync_example.py        # Lip-sync generation
 │   └── integrated_moe_example.py  # Integrated pipeline usage
-├── assets/                         # Demo videos and visual assets
-│   ├── b7fb9b2c9dd242e0a24d34b344212530_wologo.mp4  # Demo 1: Perfect lip-sync
-│   ├── de531115b7ce4f73bad998de6b81cc1b_wologo.mp4  # Demo 2: Audio-video sync
+├── assets/                         # Visual assets and architecture diagrams
 │   ├── logo.png                    # Project logo
 │   ├── moe_arch.png               # MoE architecture diagram
 │   ├── performance.png             # Performance metrics
